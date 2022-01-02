@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+
 class PostAPI: API{
    
     static func getAllPosts(tag: String?, completionHandler: @escaping ([Post]) -> ()){
