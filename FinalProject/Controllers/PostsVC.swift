@@ -12,6 +12,7 @@ import NVActivityIndicatorView
 class PostsVC: UIViewController {
 
     
+    @IBOutlet weak var newPostButtonContainerView: ShadowView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var tagNameLabel: UILabel!
     @IBOutlet weak var tagContainerView: UIView!
@@ -19,11 +20,16 @@ class PostsVC: UIViewController {
     @IBOutlet weak var loaderView: NVActivityIndicatorView!
     @IBOutlet weak var postsTableView: UITableView!
     
+    var page = 0
+    var total = 0
     var posts: [Post] = []
     var tag: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(newPostAdded), name: NSNotification.Name(rawValue: "NewPostAdd"), object: nil)
+        
         tagContainerView.layer.cornerRadius = 10
         //check if user is logged in or it's only a guest
         
@@ -31,6 +37,7 @@ class PostsVC: UIViewController {
             hiLabel.text = "Hi, \(user.firstName)"
         }else{
             hiLabel.isHidden = true
+            newPostButtonContainerView.isHidden = true
         }
         
         //check if there is  a tag
@@ -48,12 +55,31 @@ class PostsVC: UIViewController {
         
         //subscribing to the notification
         NotificationCenter.default.addObserver(self, selector: #selector(userProfileTapped), name: NSNotification.Name("userStackViewTapped"), object: nil)
+        
+        getPosts()
+//        loaderView.startAnimating()
+//        PostAPI.getAllPosts(page: page, tag: tag) { postsResponse in
+//            self.posts = postsResponse
+//            self.postsTableView.reloadData()
+//            self.loaderView.stopAnimating()
+//        }
+    }
+    
+    func getPosts(){
+        
         loaderView.startAnimating()
-        PostAPI.getAllPosts(tag: tag) { postsResponse in
-            self.posts = postsResponse
+        PostAPI.getAllPosts(page: page, tag: tag) { postsResponse, total in
+            self.total = total
+            self.posts.append(contentsOf: postsResponse)
             self.postsTableView.reloadData()
             self.loaderView.stopAnimating()
         }
+    }
+    
+    @objc func newPostAdded(){
+        self.posts = []
+        self.page = 0
+        getPosts()
     }
     
     // MARK: ACTIONS
@@ -102,13 +128,17 @@ extension PostsVC: UITableViewDelegate, UITableViewDataSource{
         
         let userImageStringUrl = post.owner.picture
         cell.userImageView.makeCircularImage()
-        cell.userImageView.setImageFromStringUrl(stringUrl: userImageStringUrl!)
-        
+        if let image = userImageStringUrl{
+        cell.userImageView.setImageFromStringUrl(stringUrl: image)
+        }
         
         //filling the user data
         
         cell.userNameLabel.text = post.owner.firstName + " " + post.owner.lastName
         cell.likesNumberLabel.text = String(post.likes)
+        
+        cell.tags = post.tags ?? []
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -125,6 +155,11 @@ extension PostsVC: UITableViewDelegate, UITableViewDataSource{
         
         present(vc, animated: true, completion: nil)
     }
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == posts.count - 1 && posts.count < total {
+            page = page + 1
+            getPosts()
+        }
+    }
 }
 

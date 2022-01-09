@@ -9,4 +9,6 @@ target 'FinalProject' do
 pod 'Alamofire', '~> 5.5'
 pod 'SwiftyJSON', '~> 4.0'
 pod 'NVActivityIndicatorView'
+pod 'IQKeyboardManagerSwift'
+pod 'Spring', :git => 'https://github.com/MengTo/Spring.git'
 end

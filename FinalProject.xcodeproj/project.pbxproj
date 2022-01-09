@@ -33,6 +33,9 @@
 		E924A1E92777FD8D0077C7DD /* TagsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924A1E82777FD8D0077C7DD /* TagsVC.swift */; };
 		E924A1EB2777FFD80077C7DD /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924A1EA2777FFD80077C7DD /* TagCell.swift */; };
 		E924A1ED277839B30077C7DD /* PostTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924A1EC277839B30077C7DD /* PostTagCell.swift */; };
+		E99497FE278B10F800C7890D /* MyProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99497FD278B10F800C7890D /* MyProfilVC.swift */; };
+		E99806E9278AA42D00B9C2F9 /* NewPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99806E8278AA42D00B9C2F9 /* NewPostVC.swift */; };
+		E9F1A51927852000006DDC29 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924A1E02776A80F0077C7DD /* API.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +70,8 @@
 		E924A1E82777FD8D0077C7DD /* TagsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsVC.swift; sourceTree = "<group>"; };
 		E924A1EA2777FFD80077C7DD /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		E924A1EC277839B30077C7DD /* PostTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagCell.swift; sourceTree = "<group>"; };
+		E99497FD278B10F800C7890D /* MyProfilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfilVC.swift; sourceTree = "<group>"; };
+		E99806E8278AA42D00B9C2F9 /* NewPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +172,8 @@
 				E924A1E22776BE9F0077C7DD /* RegisterVC.swift */,
 				E924A1E4277783E40077C7DD /* SignInVC.swift */,
 				E924A1E82777FD8D0077C7DD /* TagsVC.swift */,
+				E99806E8278AA42D00B9C2F9 /* NewPostVC.swift */,
+				E99497FD278B10F800C7890D /* MyProfilVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -320,13 +327,16 @@
 				E924A1C3276AE6610077C7DD /* Post.swift in Sources */,
 				E924A1D82772D5590077C7DD /* ProfileVC.swift in Sources */,
 				E924A1C9276E9B480077C7DD /* PostCell.swift in Sources */,
+				E9F1A51927852000006DDC29 /* API.swift in Sources */,
 				E924A1DD27761F450077C7DD /* PostAPI.swift in Sources */,
 				E924A1E72777ECBD0077C7DD /* UserManeger.swift in Sources */,
 				E924A1CF276F74A10077C7DD /* Comment.swift in Sources */,
+				E99806E9278AA42D00B9C2F9 /* NewPostVC.swift in Sources */,
 				E924A1CB276EB6B10077C7DD /* User.swift in Sources */,
 				E924A1E92777FD8D0077C7DD /* TagsVC.swift in Sources */,
 				E924A1E32776BE9F0077C7DD /* RegisterVC.swift in Sources */,
 				E924A1D4277275B00077C7DD /* UIImage+StringUrlToImage.swift in Sources */,
+				E99497FE278B10F800C7890D /* MyProfilVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

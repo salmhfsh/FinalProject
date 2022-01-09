@@ -140,4 +140,53 @@ class UserAPI: API {
         }
         
     }
+    
+    
+    static func updataUserInfo(userId: String, firstName: String, phone:String,imageUrl: String ,completionHandler: @escaping (User?,String?)->()){
+       
+        let url = "\(baseURL)/user/\(userId)"
+        let params = [
+            "firstName" : firstName,
+            "phone": phone,
+            "picture": imageUrl
+        ]
+        
+        AF.request(url,method: .put,parameters: params, encoder: JSONParameterEncoder.default, headers: headers).validate().responseJSON { response in
+            
+            switch response.result{
+            case.success:
+                print("success")
+                
+                let jsonData = JSON(response.value)
+               
+                let decoder = JSONDecoder()
+                do{
+                    let user = try decoder.decode(User.self, from: jsonData.rawData())
+                    
+                    completionHandler(user, nil)
+                   
+                }catch let error {
+                   print(error)
+                }
+                
+            case.failure(let error):
+                let jsonData = JSON(response.data)
+                let data = jsonData["data"]
+                
+                
+                // error messages
+                let emailError = data["email"].stringValue
+                let firstNameError = data["firstName"].stringValue
+                let lastNameError = data["lastName"].stringValue
+                let errorMessage = emailError + " " + firstNameError + " " + lastNameError
+                
+                completionHandler(nil , errorMessage)
+                print(emailError)
+            }
+            
+         
+          
+        }
+        
+    }
 }

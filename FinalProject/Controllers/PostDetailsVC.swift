@@ -56,8 +56,12 @@ class PostDetailsVC: UIViewController {
         userNameLabel.text = post.owner.firstName + " " + post.owner.lastName
         postTextLabel.text = post.text
         numberOfLikesLabel.text = String(post.likes)
+        if let image = post.owner.picture{
+            userImageView.setImageFromStringUrl(stringUrl: image)
+
+        }
         //هذا الكود عشان اطلع صورت البوست في صفحة التفاصيل
-        userImageView.setImageFromStringUrl(stringUrl: post.owner.picture!)
+        
         postImageView.setImageFromStringUrl(stringUrl: post.image)
         userImageView.makeCircularImage()
         //////////////

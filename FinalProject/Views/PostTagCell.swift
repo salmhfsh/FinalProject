@@ -9,4 +9,10 @@ import UIKit
 
 class PostTagCell: UICollectionViewCell {
     
+    @IBOutlet weak var tagNameLabel: UILabel!
+    @IBOutlet weak var backView: UIView!{
+        didSet{
+            backView.layer.cornerRadius = 8
+        }
+    }
 }

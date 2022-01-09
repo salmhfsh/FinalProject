@@ -39,9 +39,11 @@ class ProfileVC: UIViewController {
             
             countryLabel.text = location.country! + " - " + location.city!
         }
+        if let image = user.picture{
+            genderLabel.text = user.gender
+                    profileImageView.setImageFromStringUrl(stringUrl: image)
+        }
         
-        genderLabel.text = user.gender
-        profileImageView.setImageFromStringUrl(stringUrl: user.picture!)
         
     }
     }

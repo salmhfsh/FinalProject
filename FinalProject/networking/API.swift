@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-Object class API {
+class API {
     
     static let baseURL = "https://dummyapi.io/data/v1"
     static let appId = "61c807081cee7d3ac8536aa2"
